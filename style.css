@@ -1,0 +1,165 @@
+/*****
+Theme Name: MH Magazine lite - Child
+Description: Child theme for MH Magazine line
+Template: mh-magazine-lite
+Template URI: https://www.mhthemes.com/themes/mh/magazine-lite/ 
+Author: Charlotte Tusset
+Author URI: https://charlottetusset.me
+Version: 1.0.0
+Text Domain: mh-magazine-lite-child
+Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, custom-logo, custom-menu, featured-images, full-width-template, theme-options, threaded-comments, footer-widgets, translation-ready, rtl-language-support, blog, entertainment, news
+Text Domain: art-magazine
+*****/
+
+body {
+    background-color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 { font-family: 'Crimson Text', Helvetica, Arial, sans-serif; color: #000; line-height: 1.3; font-weight: 700; }
+
+
+.mh-widget-title-inner {
+    font-size: 1.5rem;
+}
+
+.mh-container, .mh-container-inner { 
+    width: 100%; 
+    max-width: 100%; 
+    margin: 0 auto; 
+    position: relative; 
+}
+
+.mh-site-logo {
+    border-bottom: 2px solid #e64946;
+}
+
+.mh-wrapper { 
+    float: none !important; 
+}
+
+.mh-copyright-wrap { 
+    border-top: 1px solid rgb(223, 223, 223); 
+    background: white; 
+    text-align: center;
+}
+
+.mh-widget, .mh-footer-widget { 
+    margin-bottom: 2em;
+}
+
+/***** Navigation *****/
+
+.mh-main-nav-wrap { 
+    background: #2a2a2a; 
+}
+
+#menu-flux-multilingual {
+    display: flex; 
+    flex-direction: row;
+    justify-content: center;
+}
+
+.menu-flux-multilingual-container > #menu-flux-multilingual > li:last-child {
+   background-color: white; 
+}
+
+.menu-flux-multilingual-container > #menu-flux-multilingual > li:last-child a {
+    color: #e64946;
+ }
+
+ .menu-flux-multilingual-container > #menu-flux-multilingual > li:last-child a:before {
+    content: "\f167";  /* this is your text. You can also use UTF-8 character codes as I do here */
+    font-family: FontAwesome;
+    padding-right: 2px;
+}
+
+.mh-main-nav {
+    border-bottom: 0; 
+}
+
+.mh-main-nav li { 
+    font-weight: 200; 
+    float: none;
+    flex-grow: 1;
+}
+
+.mh-main-nav li a {
+    text-align: center;
+    border-left: 1px solid rgb(255, 255, 255);
+}
+
+
+/***** SlickNav *****/
+
+.mh-main-nav-wrap .slicknav_nav ul {
+    border-top: none;
+}
+
+
+/***** Widgets *****/
+.flexslider .slides img {
+    width: 100%;
+}
+
+.mh-slider-caption .mh-excerpt-more, .mh-slider-title { 
+    color: black; 
+}
+
+.mh-slider-title { 
+    font-family: 'Crimson Text', serif;
+}
+
+.mh-slider-caption { 
+    border-bottom: none; 
+    color: black;
+    background: rgba(228, 228, 228, 0.45); 
+}
+
+.mh-slider-widget .flex-control-paging li a { 
+    border: none; 
+}
+
+.mh-slider-widget .flex-control-paging li a.flex-active { 
+    border: none; 
+}
+
+.mh-widget-title { 
+    border-bottom: 1px solid #e64946; 
+}
+
+.mh-widget .search-form { 
+    display: block; 
+    margin: 0; 
+    padding: 0; 
+    background: white; 
+    float: right;
+    width: 50%;
+}
+
+.mh-widget .search-form .search-field {
+    margin: 0;
+    width: 100%;
+}
+
+/***** Contact Page *****/
+.contact-block {
+    text-align: center;
+}
+
+.contact-block ul {
+    list-style: none;
+}
+
+
+/***** Media Queries *****/
+
+@media screen and (max-width: 767px) {
+    .mh-widget .search-form {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+	#mh-mobile .mh-slider-caption { background: rgba(228, 228, 228, 0.45); }
+}
