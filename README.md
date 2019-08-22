@@ -16,5 +16,6 @@ MH Magazine lite is distributed under the terms of the GNU GPL
 ### Contributor: Chalotte Tusset
 * Design adapted
 * New widgets 
+* Website: http://flux-news.be/ 
 
 
