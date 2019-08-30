@@ -39,4 +39,12 @@ function mh_magazine_lite_scripts() {
     }
 }
 
+function mh_magazine_lite_child_setup() {
+    load_child_theme_textdomain( 'mh-magazine-lite-child', get_stylesheet_directory() . '/languages' );
+}
+add_action( 'after_setup_theme', 'mh_magazine_lite_child_setup' );
+
+require_once('widgets/mh-exhibition.php');
+
+
 ?>

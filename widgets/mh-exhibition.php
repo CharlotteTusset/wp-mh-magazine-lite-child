@@ -2,22 +2,38 @@
 
 /***** MH Custom Posts [lite] *****/
 
-class last_expo_widget extends WP_Widget {
+class mh_exhibition extends WP_Widget {
     function __construct() {
 		parent::__construct(
-			'last_expo', esc_html_x('Last Expo', 'widget name', 'mh-magazine-lite-child'),
+			'mh_exhibition_posts', esc_html_x('MH Exhibition Posts [lite]', 'widget name', 'mh-magazine-lite'),
 			array(
-				'classname' => 'last_expo',
-				'description' => esc_html__('Widget to display last exhibition', 'mh-magazine-lite-child'),
+				'classname' => 'mh_exhibition_posts',
+				'description' => esc_html__('Exhibition Posts Widget to display posts based on categories or tags.', 'mh-magazine-lite'),
 				'customize_selective_refresh' => true
 			)
 		);
 	}
     function widget($args, $instance) {
-	    $defaults = array('title' => '');
+	    $defaults = array('title' => '', 'category' => 0, 'tags' => '', 'postcount' => 5, 'offset' => 0, 'sticky' => 1);
 		$instance = wp_parse_args($instance, $defaults);
 	   	$query_args = array();
-
+	   	if (0 !== $instance['category']) {
+			$query_args['cat'] = $instance['category'];
+		}
+		if (!empty($instance['tags'])) {
+			$tag_slugs = explode(',', $instance['tags']);
+			$tag_slugs = array_map('trim', $tag_slugs);
+			$query_args['tag_slug__in'] = $tag_slugs;
+		}
+		if (!empty($instance['postcount'])) {
+			$query_args['posts_per_page'] = $instance['postcount'];
+		}
+		if (0 !== $instance['offset']) {
+			$query_args['offset'] = $instance['offset'];
+		}
+		if (1 === $instance['sticky']) {
+			$query_args['ignore_sticky_posts'] = true;
+		}
 		$widget_loop = new WP_Query($query_args);
         echo $args['before_widget'];
         	if (!empty($instance['title'])) {
@@ -31,10 +47,10 @@ class last_expo_widget extends WP_Widget {
 					}
 				echo $args['after_title'];
 			} ?>
-			<ul class="last-expo-widget mh-clearfix"><?php
+			<ul class="mh-exhibition-posts-widget mh-clearfix"><?php
 				while ($widget_loop->have_posts()) : $widget_loop->the_post(); ?>
-					<li class="post-<?php the_ID(); ?> last-expo-item last-expo-small mh-clearfix">
-						<figure class="last-expo-thumb">
+					<li class="post-<?php the_ID(); ?> mh-exhibition-posts-item mh-exhibition-posts-small mh-clearfix">
+						<figure class="mh-exhibition-posts-thumb">
 							<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php
 								if (has_post_thumbnail()) {
 									the_post_thumbnail('mh-magazine-lite-small');
@@ -43,13 +59,13 @@ class last_expo_widget extends WP_Widget {
 								} ?>
 							</a>
 						</figure>
-						<div class="last-expo-header">
-							<p class="last-expo-small-title">
+						<div class="mh-exhibition-posts-header">
+							<p class="mh-exhibition-posts-small-title">
 								<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
 									<?php the_title(); ?>
 								</a>
 							</p>
-							<div class="mh-meta last-expo-meta">
+							<div class="mh-meta mh-exhibition-posts-meta">
 								<?php mh_magazine_lite_loop_meta(); ?>
 							</div>
 						</div>
@@ -64,8 +80,31 @@ class last_expo_widget extends WP_Widget {
         if (!empty($new_instance['title'])) {
 			$instance['title'] = sanitize_text_field($new_instance['title']);
 		}
+        if (0 !== absint($new_instance['category'])) {
+			$instance['category'] = absint($new_instance['category']);
+		}
+		if (!empty($new_instance['tags'])) {
+			$tag_slugs = explode(',', $new_instance['tags']);
+			$tag_slugs = array_map('sanitize_title', $tag_slugs);
+			$instance['tags'] = implode(', ', $tag_slugs);
+		}
+		if (0 !== absint($new_instance['postcount'])) {
+			if (absint($new_instance['postcount']) > 50) {
+				$instance['postcount'] = 50;
+			} else {
+				$instance['postcount'] = absint($new_instance['postcount']);
+			}
+		}
+		if (0 !== absint($new_instance['offset'])) {
+			if (absint($new_instance['offset']) > 50) {
+				$instance['offset'] = 50;
+			} else {
+				$instance['offset'] = absint($new_instance['offset']);
+			}
+		}
+		$instance['sticky'] = (!empty($new_instance['sticky'])) ? 1 : 0;
+        return $instance;
     }
-    
     function form($instance) {
 	    $defaults = array('title' => '', 'category' => 0, 'tags' => '', 'postcount' => 5, 'offset' => 0, 'sticky' => 1);
         $instance = wp_parse_args($instance, $defaults); ?>
