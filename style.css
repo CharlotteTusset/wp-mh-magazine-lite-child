@@ -37,7 +37,7 @@ h1, h2, h3, h4, h5, h6 {
 .page-title {display: none;}
 
 .mh-widget-title-inner {
-    font-size: 1.5rem;
+    font-size: 1.5em;
 }
 
 .mh-container, .mh-container-inner { 
@@ -62,7 +62,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .mh-widget, .mh-footer-widget { 
-    margin-bottom: 2em;
+    margin-bottom: 2rem;
+}
+
+/***** Articles Page *****/
+
+.entry-thumbnail {
+    margin: auto;
+    max-width: 100%;
+}
+
+.mh-post-nav {
+    padding: 1rem 2rem; 
+}
+
+.post {
+    padding: 0 2rem;
+    text-align: justify;
 }
 
 /***** Navigation *****/
@@ -75,20 +91,6 @@ h1, h2, h3, h4, h5, h6 {
     display: flex; 
     flex-direction: row;
     justify-content: center;
-}
-
-.menu-flux-multilingual-container > #menu-flux-multilingual > li:last-child {
-   background-color: var(--main-bg-color); 
-}
-
-.menu-flux-multilingual-container > #menu-flux-multilingual > li:last-child a {
-    color: var(--color-red);
- }
-
- .menu-flux-multilingual-container > #menu-flux-multilingual > li:last-child a:before {
-    content: "\f167";  /* this is your text. You can also use UTF-8 character codes as I do here */
-    font-family: FontAwesome;
-    padding-right: 2px;
 }
 
 .mh-main-nav {
@@ -119,11 +121,21 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
 }
 
+.yt_link {
+    text-align: right;
+}
+
+.fa-youtube {
+    font-size: 3em;
+    color: var(--color-red);
+    vertical-align: middle;
+}
+
 .mh-slider-caption .mh-excerpt-more, .mh-slider-title { 
     color: var(--color-dark); 
 }
 
-.mh-slider-title { 
+.mh-slider-title {
     font-family: var(--title-font);
 }
 
@@ -177,7 +189,7 @@ input[type=submit] {
 
 .mh-footer a {
     color: var(--color-dark);
-    font-size: 20px;
+    font-size: 1.5em;
     font-style: italic;
 }
 
@@ -190,16 +202,8 @@ input[type=submit] {
     padding: 0 10px;
 }
 
-
 .mh-footer-widget-title {
     display: none;
-}
-
-.mh-footer-widget > ul {
-    display: flex; 
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: nowrap;
 }
 
 .widget_archive li a, .widget_categories li a, .widget_pages li a, .widget_meta li a, .widget_nav_menu li a, .widget_rss li {
@@ -207,21 +211,61 @@ input[type=submit] {
 }
 
 /**** Page Galerie *****/
+
 .gallery {
-    margin: auto 1em; 
+    margin: auto 1rem; 
+}
+
+.g_block-1 {
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--color-light); 
 }
 
 .g_title {
-    text-align: center;
+    text-align: left;
+    margin-top: 2rem;
+    font-style: italic;
 }
 
 .g_exhib {
+    margin-top: 1rem;
     display: flex;
-    flex-direction: column 
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly; 
+    align-items: center;
 }
 
+.g_exhib_img {
+    box-shadow: 1.25rem 1.375rem 4.75rem 0 rgba(0,0,0,.42);
+}
+
+.g_exhib_name {
+    font-size: 3em;
+}
+
+.g_exhib_info {
+    padding-top: 1rem
+}
+
+.g_exhib_info p {
+    padding-top: 1rem
+}
+
+.g_exhib_artist {
+    font-size: 1.5em;
+}
+
+.g_exhib_date {
+    text-transform: uppercase;
+}
 
 /***** Media Queries *****/
+@media (min-width: 2000px) {
+    body {
+        padding: 0 20rem;
+    }
+}
 
 @media screen and (max-width: 767px) {
     .mh-widget .search-form {
@@ -231,4 +275,22 @@ input[type=submit] {
 
 @media screen and (max-width: 900px) {
 	#mh-mobile .mh-slider-caption { background: rgba(228, 228, 228, 0.45); }
+}
+
+@media screen and (min-width: 768px) {
+    .menu-flux-multilingual-container > ul {
+        display: flex; 
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: nowrap;
+    }
+    .g_block {
+        margin: 0 3rem;
+    }
+}
+
+@media screen and (min-width: 1068px) {
+    .g_exhib_info {
+        max-width: 350px;
+    }
 }

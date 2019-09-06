@@ -46,5 +46,8 @@ add_action( 'after_setup_theme', 'mh_magazine_lite_child_setup' );
 
 require_once('widgets/mh-exhibition.php');
 
+// function archive_exhib() {
+//     if(get_field('exhib-ongoing_date-to'))
+// }
 
 ?>
